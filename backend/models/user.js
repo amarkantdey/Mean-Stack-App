@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { use } = require("../routers/categories");
 
 const userSchema = mongoose.Schema({
     name: {
@@ -44,7 +43,7 @@ const userSchema = mongoose.Schema({
     },
 });
 
-userSchema.virtual("id").get(() => {
+userSchema.virtual("id").get(function () {
     return this._id.toHexString();
 });
 

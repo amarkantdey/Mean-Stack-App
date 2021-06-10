@@ -59,11 +59,11 @@ const productSchema = mongoose.Schema({
     },
 });
 
-userSchema.virtual("id").get(() => {
+productSchema.virtual("id").get(function () {
     return this._id.toHexString();
 });
 
-userSchema.set("toJSON", {
+productSchema.set("toJSON", {
     virtuals: true,
 });
 

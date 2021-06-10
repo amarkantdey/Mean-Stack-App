@@ -26,7 +26,7 @@ router.get(`/:id`, async (req, res) => {
     res.status(200).send(product);
 });
 
-router.put(`/`, async (req, res) => {
+router.put(`/:id`, async (req, res) => {
     const category = await Category.findById(req.body.category);
     if (!category)
         return res.status(500).send("The category cannot be created");
@@ -54,7 +54,7 @@ router.put(`/`, async (req, res) => {
     res.send(product);
 });
 
-router.post(`/:id`, async (req, res) => {
+router.post(`/`, async (req, res) => {
     const category = await Category.findById(req.body.category);
     if (!category)
         return res.status(500).send("The category cannot be created");

@@ -4,25 +4,23 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 const categoryRouter = require("./routers/categories");
 const productRouter = require("./routers/products");
+const userRouter = require("./routers/users");
+const authenticateJWT = require("./helpers/jwt");
+const errorHandler = require("./helpers/error-handler");
 
 require("dotenv/config");
 const api = process.env.API_URL;
 
-app.use(`${api}/category`, categoryRouter);
-app.use(`${api}/product`, productRouter);
-
 //middleware
 app.use(express.json());
 app.use(morgan("tiny"));
+app.use(authenticateJWT());
+app.use(errorHandler);
 
-// app.get(`${api}/products`, (req, res) => {
-//     const product = {
-//         id: 1,
-//         name: "Hair Dryer",
-//         images: "some_url",
-//     };
-//     res.send(product);
-// });
+//Routes
+app.use(`${api}/category`, categoryRouter);
+app.use(`${api}/product`, productRouter);
+app.use(`${api}/user`, userRouter);
 
 mongoose
     .connect(process.env.CONNECTION_STRING, {
