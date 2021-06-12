@@ -9,8 +9,9 @@ function authenticateJWT() {
         isRevoked: isRevoked,
     }).unless({
         path: [
-            { url: `${api}/product/`, methods: ["GET", "OPTION"] },
-            { url: `${api}/user/`, methods: ["GET", "OPTION"] },
+            { url: /\/public\/uploads(.*)/, methods: ["GET", "OPTION"] },
+            { url: /\/api\/v1\/products(.*)/, methods: ["GET", "OPTION"] },
+            { url: /\/api\/v1\/categories(.*)/, methods: ["GET", "OPTION"] },
             `${api}/user/login`,
             `${api}/user/register`,
         ],
