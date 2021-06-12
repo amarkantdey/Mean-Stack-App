@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const categoryRouter = require("./routers/categories");
 const productRouter = require("./routers/products");
 const userRouter = require("./routers/users");
+const orderRouter = require("./routers/orders");
 const authenticateJWT = require("./helpers/jwt");
 const errorHandler = require("./helpers/error-handler");
 
@@ -21,6 +22,7 @@ app.use(errorHandler);
 app.use(`${api}/category`, categoryRouter);
 app.use(`${api}/product`, productRouter);
 app.use(`${api}/user`, userRouter);
+app.use(`${api}/order`, orderRouter);
 
 mongoose
     .connect(process.env.CONNECTION_STRING, {
